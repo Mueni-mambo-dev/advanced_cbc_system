@@ -2,55 +2,135 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kitere Pro | Certificate Generator</title>
+    <title>Leaving Certificate</title>
     <style>
-        :root { --primary: #1e293b; --accent: #94a3b8; --bg: #f1f5f9; }
-        body { font-family: system-ui, sans-serif; background: var(--bg); margin: 0; padding: 40px; }
-        .container { max-width: 650px; margin: 0 auto; }
-        .card { background: white; padding: 40px; border-radius: 25px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .form-group { margin-bottom: 20px; }
-        label { display: block; font-weight: 800; font-size: 11px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; letter-spacing: 1px; }
-        input, select, textarea { width: 100%; padding: 12px; border: 2px solid #f1f5f9; border-radius: 10px; font-size: 14px; font-weight: 600; box-sizing: border-box; outline: none; }
-        input:focus { border-color: var(--primary); }
-        .btn-gen { width: 100%; background: var(--primary); color: white; padding: 18px; border: none; border-radius: 15px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; margin-top: 20px; }
-        .btn-gen:hover { background: #000; }
+        body {
+            font-family: 'Times New Roman', serif;
+            background: #f5f5f5;
+            padding: 30px;
+        }
+        .certificate-container {
+            width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background: white;
+            border: 10px solid #007bff;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .school-logo {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+        .school-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #003366;
+            margin-bottom: 5px;
+        }
+        .school-address {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+        h2 {
+            text-decoration: underline;
+            margin-bottom: 30px;
+        }
+        .student-details {
+            text-align: left;
+            margin: 0 60px 30px 60px;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+        .certificate-body {
+            margin: 30px 60px;
+            font-size: 18px;
+            line-height: 2;
+        }
+        .signatures {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding: 0 60px;
+        }
+        .signature-box {
+            text-align: center;
+        }
+        .signature-line {
+            margin-top: 50px;
+            border-top: 1px solid #000;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .footer {
+            margin-top: 50px;
+            font-size: 14px;
+            color: #555;
+        }
+        @media print {
+            body {
+                background: none;
+            }
+            .certificate-container {
+                box-shadow: none;
+                border: none;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div style="margin-bottom: 30px; text-align: center;">
-            <h1 style="font-weight: 900; letter-spacing: -1px; margin: 0;">Leaving Certificate</h1>
-            <p style="color: var(--accent); font-weight: 700; font-size: 13px;">Institutional Graduation Registry</p>
-        </div>
 
-        <div class="card">
-            <form action="generate_certificate.php" method="POST">
-                <div class="form-group">
-                    <label>Learner Full Name</label>
-                    <input type="text" name="student_name" placeholder="e.g. BENJAMIN OKOTH" required>
-                </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <div class="form-group">
-                        <label>Admission No.</label>
-                        <input type="text" name="adm_no" placeholder="KPS/2026/..." required>
-                    </div>
-                    <div class="form-group">
-                        <label>Date of Leaving</label>
-                        <input type="date" name="exit_date" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Co-Curricular Activities</label>
-                    <textarea name="activities" rows="2" placeholder="e.g. Football Captain, Drama Club"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Headteacher's Remarks</label>
-                    <textarea name="remarks" rows="3" placeholder="General conduct and academic progress..."></textarea>
-                </div>
-                <button type="submit" class="btn-gen">Generate Formal Document</button>
-            </form>
+<div class="certificate-container">
+    <!-- School Logo -->
+    <img src="school_logo.png" alt="School Logo" class="school-logo">
+
+    <!-- School Name and Address -->
+    <div class="school-name">Sunrise Academy</div>
+    <div class="school-address">P.O. Box 1234, Rongo, Kenya | Tel: +254 700 123456</div>
+
+    <!-- Certificate Title -->
+    <h2>Leaving Certificate</h2>
+
+    <!-- Student Details -->
+    <div class="student-details">
+        Name of Student: <strong>John Doe</strong><br>
+        Admission Number: <strong>SA/2020/01</strong><br>
+        Date of Birth: <strong>15th March 2010</strong><br>
+        Class: <strong>Class 8</strong><br>
+        Date of Admission: <strong>1st January 2016</strong><br>
+        Date of Leaving: <strong>30th March 2026</strong>
+    </div>
+
+    <!-- Certificate Body -->
+    <div class="certificate-body">
+        This is to certify that <strong>John Doe</strong> has satisfactorily completed the required course of study
+        at <strong>Sunrise Academy</strong> and has met all the academic and behavioral requirements for graduation
+        from Class 8. This certificate is issued upon request for whatever purpose it may serve the student.
+    </div>
+
+    <!-- Signatures -->
+    <div class="signatures">
+        <div class="signature-box">
+            Headteacher<br>
+            <div class="signature-line"></div>
+        </div>
+        <div class="signature-box">
+            Principal<br>
+            <div class="signature-line"></div>
+        </div>
+        <div class="signature-box">
+            Date<br>
+            <div class="signature-line"></div>
         </div>
     </div>
+
+    <div class="footer">
+        This certificate is valid only if signed by the Headteacher and Principal.
+    </div>
+</div>
+
 </body>
 </html>
