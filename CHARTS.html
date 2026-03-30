@@ -1,132 +1,129 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
-<title>Class Performance Comparison</title>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<style>
-
-body{
-font-family:Arial;
-margin:0;
-background:linear-gradient(120deg,#667eea,#764ba2);
-color:white;
-}
-
-header{
-background:#002147;
-padding:20px;
-text-align:center;
-}
-
-.container{
-width:80%;
-margin:auto;
-margin-top:40px;
-background:white;
-color:black;
-padding:30px;
-border-radius:12px;
-box-shadow:0 10px 25px rgba(0,0,0,0.3);
-}
-
-h2{
-text-align:center;
-}
-
-input,select{
-padding:12px;
-margin:10px;
-width:28%;
-border-radius:6px;
-border:1px solid #ccc;
-}
-
-button{
-padding:12px 25px;
-background:#1abc9c;
-color:white;
-border:none;
-border-radius:6px;
-cursor:pointer;
-font-size:16px;
-}
-
-button:hover{
-background:#16a085;
-}
-
-.chart-box{
-margin-top:40px;
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <title>Student Performance Charts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            max-width: 500px;
+            margin: 0 auto 30px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        label {
+            font-weight: bold;
+        }
+        select {
+            padding: 8px;
+            width: 100%;
+            margin: 10px 0 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: #007bff;
+            color: white;
+            border: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background: #0056b3;
+        }
+        #chartContainer {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
+<h2>Student Performance Charts</h2>
 
-<h2>Class Performance Comparison</h2>
+<form action="charts.php" method="POST">
+    <label for="student_id">Select Student:</label>
+    <select name="student_id" id="student_id" required>
+        <option value="">--Select Student--</option>
+        <option value="1">John Doe</option>
+        <option value="2">Jane Otieno</option>
+        <option value="3">Mary Wanjiku</option>
+    </select>
 
-</header>
+    <label for="term">Select Term:</label>
+    <select name="term" id="term" required>
+        <option value="">--Select Term--</option>
+        <option value="Term 1">Term 1</option>
+        <option value="Term 2">Term 2</option>
+        <option value="Term 3">Term 3</option>
+    </select>
 
-<div class="container">
+    <label for="year">Select Year:</label>
+    <select name="year" id="year" required>
+        <option value="">--Select Year--</option>
+        <option value="2026">2026</option>
+        <option value="2025">2025</option>
+        <option value="2024">2024</option>
+    </select>
 
-<h2>Compare Students</h2>
+    <input type="submit" name="submit" value="Generate Chart">
+</form>
 
-<input type="text" id="class" placeholder="Class e.g Grade 6">
-<input type="text" id="term" placeholder="Term e.g Term 1">
-<input type="number" id="year" placeholder="Year">
-
-<button onclick="loadChart()">Generate Chart</button>
-
-<div class="chart-box">
-<canvas id="chart"></canvas>
+<div id="chartContainer">
+    <canvas id="performanceChart"></canvas>
 </div>
 
-</div>
-
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-
-function loadChart(){
-
-let classVal = document.getElementById("class").value;
-let term = document.getElementById("term").value;
-let year = document.getElementById("year").value;
-
-fetch(`comparison.php?class=${classVal}&term=${term}&year=${year}`)
-
-.then(res => res.json())
-.then(data => {
-
-let names = [];
-let averages = [];
-
-data.forEach(row => {
-names.push(row.name);
-averages.push(row.average);
-});
-
-new Chart(document.getElementById("chart"), {
-type: 'bar',
-data: {
-labels: names,
-datasets: [{
-label: 'Average Marks',
-data: averages
-}]
+// Chart data will be filled dynamically by PHP
+<?php
+if(isset($_GET['data'])){
+    $chartData = json_decode($_GET['data'], true);
+    echo "const subjects = " . json_encode($chartData['subjects']) . ";";
+    echo "const marks = " . json_encode($chartData['marks']) . ";";
 }
-});
-
-});
-
+?>
+if(typeof subjects !== 'undefined' && typeof marks !== 'undefined'){
+    const ctx = document.getElementById('performanceChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: subjects,
+            datasets: [{
+                label: 'Marks',
+                data: marks,
+                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive:true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100
+                }
+            }
+        }
+    });
 }
-
 </script>
 
 </body>
