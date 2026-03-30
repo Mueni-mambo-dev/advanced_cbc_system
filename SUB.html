@@ -1,17 +1,67 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Add Subject</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #eef2f7;
+        padding: 40px;
+    }
+    h2 {
+        text-align: center;
+        color: #003366;
+        margin-bottom: 30px;
+    }
+    form {
+        max-width: 500px;
+        margin: auto;
+        background: #fff;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    label {
+        font-weight: bold;
+    }
+    input[type="text"], select {
+        width: 100%;
+        padding: 12px;
+        margin: 12px 0 20px 0;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+    }
+    input[type="submit"] {
+        width: 100%;
+        padding: 12px;
+        background: #003366;
+        color: white;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 6px;
+    }
+    input[type="submit"]:hover {
+        background: #001f4d;
+    }
+</style>
+</head>
 <body>
 
 <h2>Add Subject</h2>
 
-<form action="subjects.php" method="POST">
+<form action="SUB.php" method="POST">
+    <label>Subject Name:</label>
+    <input type="text" name="subject_name" placeholder="Enter subject name" required>
 
-Subject Name
-<input name="subject">
+    <label>Subject Code:</label>
+    <input type="text" name="subject_code" placeholder="Enter subject code" required>
 
-<button>Add Subject</button>
+    <label>Class / Level:</label>
+    <input type="text" name="class_level" placeholder="Enter class/level" required>
 
+    <input type="submit" name="submit" value="Add Subject">
 </form>
 
 </body>
