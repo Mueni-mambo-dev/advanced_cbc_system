@@ -1,110 +1,74 @@
-<?php
-$conn = new mysqli("localhost", "root", "", "your_db_name");
-if($conn->connect_error) die("DB Connection failed: " . $conn->connect_error);
-
-if(isset($_POST['submit'])){
-    $student_id = $_POST['student_id'];
-    $query = $conn->query("SELECT * FROM students WHERE id=$student_id");
-
-    if($query->num_rows == 0){
-        echo "<h3 style='text-align:center;color:red;'>Student not found</h3>";
-        exit;
-    }
-
-    $student = $query->fetch_assoc();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Student Profile</title>
+<title>Add Teacher</title>
 <style>
-body {
-    font-family: Arial, sans-serif;
-    background: #eef2f7;
-    padding: 30px;
-}
-.profile-container {
-    max-width: 800px;
-    margin: auto;
-    background: #fff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-}
-.profile-header {
-    text-align: center;
-    margin-bottom: 30px;
-}
-.profile-header h2 {
-    color: #003366;
-}
-.profile-body {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-.profile-photo {
-    flex: 1 1 200px;
-    text-align: center;
-}
-.profile-photo img {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #003366;
-}
-.profile-details {
-    flex: 2 1 400px;
-    font-size: 16px;
-    line-height: 1.8;
-}
-.profile-details strong {
-    color: #003366;
-}
-.back-btn {
-    display: block;
-    margin: 30px auto 0 auto;
-    text-align: center;
-    padding: 12px 25px;
-    background: #003366;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 6px;
-}
-.back-btn:hover {
-    background: #001f4d;
-}
+    body {
+        font-family: Arial, sans-serif;
+        background: #eef2f7;
+        padding: 40px;
+    }
+    h2 {
+        text-align: center;
+        color: #003366;
+        margin-bottom: 30px;
+    }
+    form {
+        max-width: 500px;
+        margin: auto;
+        background: #fff;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    label {
+        font-weight: bold;
+    }
+    input[type="text"], input[type="email"], select {
+        width: 100%;
+        padding: 12px;
+        margin: 12px 0 20px 0;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+    }
+    input[type="submit"] {
+        width: 100%;
+        padding: 12px;
+        background: #003366;
+        color: white;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 6px;
+    }
+    input[type="submit"]:hover {
+        background: #001f4d;
+    }
 </style>
 </head>
 <body>
 
-<div class="profile-container">
-    <div class="profile-header">
-        <h2>Student Profile</h2>
-    </div>
+<h2>Add Teacher</h2>
 
-    <div class="profile-body">
-        <div class="profile-photo">
-            <img src="<?php echo $student['photo'] ?? 'default.png'; ?>" alt="Profile Photo">
-        </div>
-        <div class="profile-details">
-            <p><strong>Name:</strong> <?php echo $student['name']; ?></p>
-            <p><strong>Admission Number:</strong> <?php echo $student['admission_no']; ?></p>
-            <p><strong>Class:</strong> <?php echo $student['class']; ?></p>
-            <p><strong>Date of Birth:</strong> <?php echo $student['dob']; ?></p>
-            <p><strong>Parent/Guardian:</strong> <?php echo $student['parent_name']; ?></p>
-            <p><strong>Contact:</strong> <?php echo $student['parent_contact']; ?></p>
-            <p><strong>Email:</strong> <?php echo $student['email']; ?></p>
-            <p><strong>Address:</strong> <?php echo $student['address']; ?></p>
-        </div>
-    </div>
+<form action="teach.php" method="POST">
+    <label>Teacher Name:</label>
+    <input type="text" name="name" placeholder="Enter teacher's name" required>
 
-    <a href="STU_PROFILE.html" class="back-btn">Back to Form</a>
-</div>
+    <label>Teacher ID:</label>
+    <input type="text" name="teacher_id" placeholder="Enter teacher ID" required>
+
+    <label>Subject:</label>
+    <input type="text" name="subject" placeholder="Enter subject" required>
+
+    <label>Email:</label>
+    <input type="email" name="email" placeholder="Enter email" required>
+
+    <label>Phone:</label>
+    <input type="text" name="phone" placeholder="Enter phone number" required>
+
+    <input type="submit" name="submit" value="Add Teacher">
+</form>
 
 </body>
 </html>
