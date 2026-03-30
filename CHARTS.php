@@ -1,36 +1,29 @@
 <?php
+$conn = new mysqli("localhost", "root", "", "your_db_name"); // change DB
 
-include "db.php";
-
-$class = $_GET['class'];
-$term = $_GET['term'];
-$year = $_GET['year'];
-
-$query = "
-
-SELECT students.name, AVG(marks.marks) as average
-
-FROM marks
-
-JOIN students ON students.id = marks.student_id
-
-WHERE students.class = '$class'
-AND marks.term = '$term'
-AND marks.year = '$year'
-
-GROUP BY students.id
-ORDER BY average DESC
-
-";
-
-$result = $conn->query($query);
-
-$data = [];
-
-while($row = $result->fetch_assoc()){
-$data[] = $row;
+if($conn->connect_error){
+    die("Connection failed: " . $conn->connect_error);
 }
 
-echo json_encode($data);
+if(isset($_POST['submit'])){
+    $student_id = $_POST['student_id'];
+    $term = $_POST['term'];
+    $year = $_POST['year'];
 
+    // Fetch student marks
+    $marks_query = $conn->query("SELECT subject, marks FROM marks WHERE student_id=$student_id AND term='$term' AND year='$year'");
+
+    $subjects = [];
+    $marks = [];
+
+    while($row = $marks_query->fetch_assoc()){
+        $subjects[] = $row['subject'];
+        $marks[] = (int)$row['marks'];
+    }
+
+    // Pass data to HTML file using GET parameter as JSON
+    $chartData = json_encode(['subjects'=>$subjects, 'marks'=>$marks]);
+    header("Location: charts.html?data=" . urlencode($chartData));
+    exit;
+}
 ?>
