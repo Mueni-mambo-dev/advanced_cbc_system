@@ -2,22 +2,99 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Teacher Attendance Prototype | Kitere Pro</title>
-    </head>
+    <title>Teacher Attendance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background: #007bff;
+            color: white;
+        }
+        input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: #28a745;
+            color: white;
+            border: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background: #218838;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="date"] {
+            padding: 8px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 200px;
+        }
+    </style>
+</head>
 <body>
-    <div class="container">
-        <div class="att-card">
-            <div class="staff-info">
-                <div class="avatar">SO</div>
-                <div class="staff-details">
-                    <b>STEPHEN OMONDI</b>
-                    <span>TR/001 • Head Teacher</span>
-                </div>
-            </div>
-            <div class="status-picker">
-                <label style="background:#dcfce7; color:#166534; padding:8px 16px; border-radius:10px; font-size:11px; font-weight:900;">PRESENT</label>
-            </div>
-        </div>
-    </div>
+
+<h2>Teacher Attendance</h2>
+<form action="TRS_ATTENDANCE.php" method="POST">
+    <label for="date">Date:</label>
+    <input type="date" name="date" id="date" required value="<?php echo date('Y-m-d'); ?>"><br>
+
+    <table>
+        <tr>
+            <th>Teacher Name</th>
+            <th>Present</th>
+            <th>Absent</th>
+        </tr>
+        <!-- Replace these rows with your teachers dynamically if needed -->
+        <tr>
+            <td>John Mwangi</td>
+            <td><input type="radio" name="attendance[1]" value="Present" required></td>
+            <td><input type="radio" name="attendance[1]" value="Absent" required></td>
+        </tr>
+        <tr>
+            <td>Jane Otieno</td>
+            <td><input type="radio" name="attendance[2]" value="Present" required></td>
+            <td><input type="radio" name="attendance[2]" value="Absent" required></td>
+        </tr>
+        <tr>
+            <td>Mary Wanjiku</td>
+            <td><input type="radio" name="attendance[3]" value="Present" required></td>
+            <td><input type="radio" name="attendance[3]" value="Absent" required></td>
+        </tr>
+    </table>
+
+    <input type="submit" name="submit" value="Submit Attendance">
+</form>
+
 </body>
 </html>
