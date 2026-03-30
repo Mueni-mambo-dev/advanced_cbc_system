@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitere Pro | Dispatch Center</title>
+    <style>
+        :root { --primary: #f59e0b; --slate-950: #020617; --slate-50: #f8fafc; }
+        body { font-family: system-ui, sans-serif; background: var(--slate-50); margin: 0; padding: 20px; color: var(--slate-950); }
+        .container { max-width: 600px; margin: 40px auto; }
+        .nav { display: flex; align-items: center; gap: 10px; margin-bottom: 30px; }
+        .card { background: white; padding: 40px; border-radius: 30px; border: 1px solid #e2e8f0; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
+        .form-group { margin-bottom: 25px; }
+        label { display: block; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #64748b; margin-bottom: 10px; }
+        select, textarea { width: 100%; padding: 15px; border-radius: 12px; border: 2px solid #f1f5f9; font-size: 1rem; font-weight: 600; outline: none; box-sizing: border-box; }
+        textarea { resize: none; height: 120px; font-family: inherit; }
+        .char-count { text-align: right; font-size: 11px; font-weight: 700; color: #94a3b8; margin-top: 5px; }
+        .btn-send { width: 100%; background: var(--primary); color: white; padding: 18px; border-radius: 15px; border: none; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .btn-send:hover { background: #d97706; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="nav">
+            <a href="dashboard.php" style="text-decoration:none; color:#64748b; font-weight:800; font-size:12px;">← CONSOLE</a>
+        </div>
+
+        <header style="margin-bottom: 30px;">
+            <h1 style="font-weight:900; letter-spacing:-1.5px; margin:0;">SMS Dispatch</h1>
+            <p style="color:#64748b; font-weight:600; font-size:0.9rem;">Broadcast notifications to the school community.</p>
+        </header>
+
+        <div class="card">
+            <form action="send_notification.php" method="POST">
+                <div class="form-group">
+                    <label>Recipient Group</label>
+                    <select name="recipient_group" required>
+                        <option value="All Parents">All Parents/Guardians</option>
+                        <option value="Grade 4">Grade 4 Parents Only</option>
+                        <option value="Grade 6">Grade 6 Parents Only</option>
+                        <option value="Staff">Teaching Staff</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Message Content</label>
+                    <textarea name="message" id="smsText" maxlength="160" placeholder="e.g. Dear Parent, please note that school closes on..." required oninput="updateCount()"></textarea>
+                    <div class="char-count"><span id="count">0</span> / 160 Characters</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Notification Type</label>
+                    <select name="type">
+                        <option value="General">General Announcement</option>
+                        <option value="Fee Reminder">Fee Reminder</option>
+                        <option value="Emergency">Emergency Alert</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-send">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    Send Broadcast
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function updateCount() {
+            const text = document.getElementById('smsText').value;
+            document.getElementById('count').innerText = text.length;
+        }
+    </script>
+</body>
+</html>

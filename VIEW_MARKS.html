@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitere Pro | View Performance</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --slate-50: #f8fafc;
+            --slate-100: #f1f5f9;
+            --slate-200: #e2e8f0;
+            --slate-700: #334155;
+            --slate-900: #0f172a;
+            /* CBC Palette */
+            --ee: #10b981; /* Exceeding Expectations */
+            --me: #3b82f6; /* Meeting Expectations */
+            --ae: #f59e0b; /* Approaching Expectations */
+            --be: #ef4444; /* Below Expectations */
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--slate-50);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .viewer-card {
+            background: white;
+            width: 100%;
+            max-width: 600px;
+            padding: 40px;
+            border-radius: 32px;
+            border: 1px solid var(--slate-200);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--slate-100);
+        }
+
+        .header h1 { font-size: 1.6rem; font-weight: 900; margin: 0; letter-spacing: -1px; }
+        .header p { color: #64748b; font-size: 13px; font-weight: 600; margin-top: 5px; }
+
+        .search-section {
+            background: var(--slate-100);
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+
+        label { display: block; font-size: 11px; font-weight: 800; color: var(--slate-700); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+
+        .select-control {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 14px;
+            border: 2px solid var(--slate-200);
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 700;
+            background: white;
+            outline: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .select-control:focus { border-color: var(--primary); }
+
+        /* Result Display Area */
+        .result-display {
+            display: none; /* Hidden until a student is selected */
+            animation: slideUp 0.4s ease-out forwards;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .score-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .score-box {
+            background: var(--slate-900);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 18px;
+            text-align: center;
+        }
+
+        .score-box span { display: block; font-size: 10px; font-weight: 800; opacity: 0.7; margin-bottom: 4px; }
+        .score-box b { font-size: 1.8rem; font-weight: 900; }
+
+        .cbc-badge {
+            padding: 12px 20px;
+            border-radius: 14px;
+            font-size: 12px;
+            font-weight: 900;
+            text-align: center;
+            flex: 1;
+            margin-left: 15px;
+        }
+
+        /* CBC Status Classes */
+        .status-ee { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
+        .status-me { background: #dbeafe; color: #1d4ed8; border: 1px solid #93c5fd; }
+        .status-ae { background: #fef3c7; color: #b45309; border: 1px solid #fcd34d; }
+        .status-be { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+
+        .remarks-box {
+            background: var(--slate-50);
+            padding: 20px;
+            border-radius: 18px;
+            border-left: 4px solid var(--primary);
+            font-style: italic;
+            color: var(--slate-700);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .btn-view {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 16px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-view:hover { background: var(--slate-900); }
+    </style>
+</head>
+<body>
+
+<div class="viewer-card">
+    <div class="header">
+        <h1>Marks <span style="color:var(--primary)">Inquiry</span></h1>
+        <p>Kitere Primary School • Academic Ledger</p>
+    </div>
+
+    <div class="search-section">
+        <label>Enter or Select Admission Number</label>
+        <select class="select-control" id="admSelector" onchange="showPerformance()">
+            <option value="">-- Choose Learner --</option>
+            <option value="42" data-score="88" data-grade="ee" data-remarks="Benjamin demonstrates exceptional mastery of concepts. Consistent and self-driven.">KPS/2026/042 - Benjamin Okoth</option>
+            <option value="115" data-score="72" data-grade="me" data-remarks="Mercy meets all grade requirements. Should focus more on geometry.">KPS/2026/115 - Mercy Auma</option>
+            <option value="89" data-score="54" data-grade="ae" data-remarks="Evans is making progress but needs additional support in mental math.">KPS/2026/089 - Evans Juma</option>
+            <option value="201" data-score="35" data-grade="be" data-remarks="Sarah requires urgent intervention and remedial classes for this subject.">KPS/2026/201 - Sarah Wairimu</option>
+        </select>
+    </div>
+
+    <div class="result-display" id="resultArea">
+        <div class="score-row">
+            <div class="score-box">
+                <span>RAW SCORE</span>
+                <b id="dispScore">0%</b>
+            </div>
+            <div class="cbc-badge" id="dispBadge">
+                Awaiting Data
+            </div>
+        </div>
+
+        <label>Teacher's Assessment Remarks</label>
+        <div class="remarks-box" id="dispRemarks">
+            Select a learner to view remarks.
+        </div>
+    </div>
+</div>
+
+<script>
+    function showPerformance() {
+        const selector = document.getElementById('admSelector');
+        const resultArea = document.getElementById('resultArea');
+        const selectedOption = selector.options[selector.selectedIndex];
+
+        if (selector.value === "") {
+            resultArea.style.display = "none";
+            return;
+        }
+
+        // Extract data from attributes
+        const score = selectedOption.getAttribute('data-score');
+        const gradeClass = selectedOption.getAttribute('data-grade');
+        const remarks = selectedOption.getAttribute('data-remarks');
+
+        // Update UI
+        document.getElementById('dispScore').innerText = score + "%";
+        document.getElementById('dispRemarks').innerText = '"' + remarks + '"';
+        
+        const badge = document.getElementById('dispBadge');
+        badge.className = "cbc-badge"; // Reset classes
+        
+        if (gradeClass === "ee") {
+            badge.innerText = "EE: Exceeding Expectations";
+            badge.classList.add('status-ee');
+        } else if (gradeClass === "me") {
+            badge.innerText = "ME: Meeting Expectations";
+            badge.classList.add('status-me');
+        } else if (gradeClass === "ae") {
+            badge.innerText = "AE: Approaching Expectations";
+            badge.classList.add('status-ae');
+        } else if (gradeClass === "be") {
+            badge.innerText = "BE: Below Expectations";
+            badge.classList.add('status-be');
+        }
+
+        resultArea.style.display = "block";
+    }
+</script>
+
+</body>
+</html>

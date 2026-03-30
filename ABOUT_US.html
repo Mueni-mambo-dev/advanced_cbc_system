@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Kitere Primary School</title>
+    <style>
+        /* CSS reset and offline variable definitions */
+        :root {
+            --primary: #4f46e5;
+            --slate-900: #0f172a;
+            --slate-600: #475569;
+            --slate-100: #f1f5f9;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--slate-900);
+            background-color: var(--white);
+        }
+
+        /* Navigation Style */
+        .nav {
+            padding: 20px 40px;
+            border-bottom: 1px solid var(--slate-100);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            font-style: italic;
+            letter-spacing: -1px;
+        }
+
+        .logo span { color: var(--primary); }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 20px;
+            text-align: center;
+            background: linear-gradient(to bottom, #f8fafc, #ffffff);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin: 0;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+
+        /* Content Grid */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+        }
+
+        .text-content p {
+            font-size: 1.1rem;
+            color: var(--slate-600);
+            margin-bottom: 20px;
+        }
+
+        /* Institutional Quote Box */
+        .quote-box {
+            background: var(--slate-100);
+            padding: 40px;
+            border-radius: 40px;
+            position: relative;
+        }
+
+        .quote-icon {
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .quote-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        /* Footer Action */
+        .footer-action {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .btn-back {
+            text-decoration: none;
+            background: var(--slate-900);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 99px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: background 0.3s;
+        }
+
+        .btn-back:hover { background: var(--primary); }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <div class="logo">Kitere<span>Pro</span></div>
+        <div style="font-size: 10px; font-weight: 900; color: var(--slate-600); text-transform: uppercase; letter-spacing: 2px;">
+            Institutional Portal 2026
+        </div>
+    </nav>
+
+    <header class="hero">
+        <span style="color: var(--primary); font-weight: 900; text-transform: uppercase; letter-spacing: 4px; font-size: 12px;">Our Heritage</span>
+        <h1>A Home of Success</h1>
+    </header>
+
+    <main class="container">
+        <div class="text-content">
+            <p>
+                Kitere Primary School stands as a beacon of academic excellence and pedagogical innovation. Established with a commitment to nurturing individual potential, we have evolved into a premier institution.
+            </p>
+            <p>
+                By integrating modern digital management systems with the Competency-Based Curriculum (CBC), we ensure that every learner is tracked, nurtured, and empowered to reach their zenith.
+            </p>
+            <div style="display: flex; gap: 30px; margin-top: 40px;">
+                <div>
+                    <div style="font-size: 2rem; font-weight: 900;">100%</div>
+                    <div style="font-size: 10px; font-weight: 900; color: var(--primary); text-transform: uppercase;">CBC Compliant</div>
+                </div>
+                <div>
+                    <div style="font-size: 2rem; font-weight: 900;">2026</div>
+                    <div style="font-size: 10px; font-weight: 900; color: var(--primary); text-transform: uppercase;">Digital Era</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quote-box">
+            <span class="quote-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H16.017C15.4647 8 15.017 8.44772 15.017 9V12C15.017 12.5523 14.5693 13 14.017 13H11.017V21H14.017ZM5.017 21L5.017 18C5.017 16.8954 5.91243 16 7.017 16H10.017C10.5693 16 11.017 15.5523 11.017 15V9C11.017 8.44772 10.5693 8 10.017 8H7.017C6.46472 8 6.017 8.44772 6.017 9V12C6.017 12.5523 5.56929 13 5.017 13H2.017V21H5.017Z"></path>
+                </svg>
+            </span>
+            <div class="quote-text">"Education is the most powerful weapon which you can use to change the world."</div>
+            <div style="font-weight: 900; font-size: 12px; text-transform: uppercase; color: var(--primary);">Office of the Principal</div>
+        </div>
+    </main>
+
+    <div class="footer-action">
+        <a href="DASH.html" class="btn-back">Back to Dashboard</a>
+    </div>
+
+</body>
+</html>

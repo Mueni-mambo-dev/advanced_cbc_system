@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitere Pro | Report Generator</title>
+    <style>
+        :root { --primary: #4f46e5; --slate-900: #0f172a; --bg: #f8fafc; }
+        body { font-family: system-ui, sans-serif; background: var(--bg); margin: 0; padding: 40px; }
+        .container { max-width: 500px; margin: 0 auto; }
+        .card { background: white; padding: 40px; border-radius: 30px; border: 1px solid #e2e8f0; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: 800; font-size: 11px; text-transform: uppercase; color: #64748b; margin-bottom: 8px; }
+        select, input { width: 100%; padding: 12px; border: 2px solid #f1f5f9; border-radius: 12px; font-weight: 600; outline: none; }
+        .btn-gen { width: 100%; background: var(--slate-900); color: white; padding: 18px; border: none; border-radius: 15px; font-weight: 900; text-transform: uppercase; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header style="text-align: center; margin-bottom: 30px;">
+            <h1 style="font-weight: 900; letter-spacing: -1.5px; margin: 0;">Terminal Reports</h1>
+            <p style="color: #64748b; font-weight: 600;">Kitere Primary Academic Registry</p>
+        </header>
+        <div class="card">
+            <form action="generate_report.php" method="POST">
+                <div class="form-group">
+                    <label>Select Learner</label>
+                    <select name="student_id" required>
+                        <option value="1">Benjamin Okoth (KPS/2026/042)</option>
+                        <option value="2">Mercy Achieng (KPS/2026/015)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Term & Year</label>
+                    <input type="text" name="term" value="Term 1, 2026" readonly>
+                </div>
+                <button type="submit" class="btn-gen">Preview & Print Report</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

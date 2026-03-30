@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitere Pro | Certificate Generator</title>
+    <style>
+        :root { --primary: #1e293b; --accent: #94a3b8; --bg: #f1f5f9; }
+        body { font-family: system-ui, sans-serif; background: var(--bg); margin: 0; padding: 40px; }
+        .container { max-width: 650px; margin: 0 auto; }
+        .card { background: white; padding: 40px; border-radius: 25px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: 800; font-size: 11px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; letter-spacing: 1px; }
+        input, select, textarea { width: 100%; padding: 12px; border: 2px solid #f1f5f9; border-radius: 10px; font-size: 14px; font-weight: 600; box-sizing: border-box; outline: none; }
+        input:focus { border-color: var(--primary); }
+        .btn-gen { width: 100%; background: var(--primary); color: white; padding: 18px; border: none; border-radius: 15px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; margin-top: 20px; }
+        .btn-gen:hover { background: #000; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="margin-bottom: 30px; text-align: center;">
+            <h1 style="font-weight: 900; letter-spacing: -1px; margin: 0;">Leaving Certificate</h1>
+            <p style="color: var(--accent); font-weight: 700; font-size: 13px;">Institutional Graduation Registry</p>
+        </div>
+
+        <div class="card">
+            <form action="generate_certificate.php" method="POST">
+                <div class="form-group">
+                    <label>Learner Full Name</label>
+                    <input type="text" name="student_name" placeholder="e.g. BENJAMIN OKOTH" required>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div class="form-group">
+                        <label>Admission No.</label>
+                        <input type="text" name="adm_no" placeholder="KPS/2026/..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Date of Leaving</label>
+                        <input type="date" name="exit_date" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Co-Curricular Activities</label>
+                    <textarea name="activities" rows="2" placeholder="e.g. Football Captain, Drama Club"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Headteacher's Remarks</label>
+                    <textarea name="remarks" rows="3" placeholder="General conduct and academic progress..."></textarea>
+                </div>
+                <button type="submit" class="btn-gen">Generate Formal Document</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

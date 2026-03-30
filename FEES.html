@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>School Fees Management</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:linear-gradient(120deg,#84fab0,#8fd3f4);
+margin:0;
+}
+
+header{
+background:#002147;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+.container{
+width:55%;
+margin:auto;
+background:white;
+padding:40px;
+margin-top:40px;
+border-radius:12px;
+box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+h2{
+text-align:center;
+margin-bottom:30px;
+}
+
+label{
+font-weight:bold;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin-top:10px;
+margin-bottom:20px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#27ae60;
+color:white;
+border:none;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1e8449;
+}
+
+.footer{
+text-align:center;
+margin-top:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h2>CBC School Fees System</h2>
+
+</header>
+
+<div class="container">
+
+<h2>Enter Student Fees Payment</h2>
+
+<form action="fees.php" method="POST">
+
+<label>Student ID</label>
+<input type="number" name="student_id" required>
+
+<label>Term</label>
+<select name="term">
+
+<option value="Term 1">Term 1</option>
+<option value="Term 2">Term 2</option>
+<option value="Term 3">Term 3</option>
+
+</select>
+
+<label>Total Fees Required</label>
+<input type="number" name="total_fees" placeholder="Example 12000" required>
+
+<label>Amount Paid</label>
+<input type="number" name="amount_paid" placeholder="Example 8000" required>
+
+<button type="submit">Save Payment</button>
+
+</form>
+
+<div class="footer">
+
+<a href="VIEW_FEES.html">View Fee Records</a>
+
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>CBC Student Ranking</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:linear-gradient(120deg,#4facfe,#00f2fe);
+margin:0;
+}
+
+header{
+background:#002147;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+.container{
+width:50%;
+margin:auto;
+margin-top:50px;
+background:white;
+padding:40px;
+border-radius:12px;
+box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+
+label{
+font-weight:bold;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin-top:10px;
+margin-bottom:20px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+button{
+background:#1abc9c;
+color:white;
+padding:12px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+width:100%;
+font-size:16px;
+}
+
+button:hover{
+background:#16a085;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h2>CBC Student Ranking Generator</h2>
+</header>
+
+<div class="container">
+
+<form action="ranking.php" method="GET">
+
+<label>Class</label>
+<input type="text" name="class" placeholder="Example: Grade 6">
+
+<label>Term</label>
+
+<select name="term">
+
+<option value="Term 1">Term 1</option>
+<option value="Term 2">Term 2</option>
+<option value="Term 3">Term 3</option>
+
+</select>
+
+<label>Year</label>
+<input type="number" name="year" placeholder="Example: 2026">
+
+<button type="submit">Generate Ranking</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

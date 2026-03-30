@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>CBC Examination System Login</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+height:100vh;
+background:linear-gradient(120deg,#4facfe,#00f2fe);
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.login-box{
+width:350px;
+background:white;
+padding:40px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+h2{
+text-align:center;
+margin-bottom:30px;
+color:#002147;
+}
+
+label{
+font-weight:bold;
+}
+
+input{
+width:100%;
+padding:12px;
+margin-top:8px;
+margin-bottom:20px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#1abc9c;
+color:white;
+border:none;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#16a085;
+}
+
+.footer{
+text-align:center;
+margin-top:15px;
+font-size:13px;
+color:#777;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+<h2>System Login</h2>
+
+<form action="login.php" method="POST">
+
+<label>Username</label>
+<input type="text" name="username" required>
+
+<label>Password</label>
+<input type="password" name="password" required>
+
+<button type="submit">Login</button>
+
+</form>
+
+<div class="footer">
+
+Kitere CBC Examination System
+
+</div>
+
+</div>
+
+</body>
+
+</html>

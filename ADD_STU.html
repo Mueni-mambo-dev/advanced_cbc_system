@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kitere Pro | New Registration</title>
+    <style>
+        :root { --primary: #4f46e5; --slate-900: #0f172a; --slate-50: #f8fafc; }
+        body { font-family: system-ui, sans-serif; background: var(--slate-50); margin: 0; padding: 40px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .card { background: white; padding: 40px; border-radius: 30px; border: 1px solid #e2e8f0; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-group { margin-bottom: 20px; }
+        .full-width { grid-column: span 2; }
+        label { display: block; font-weight: 800; font-size: 11px; text-transform: uppercase; color: #64748b; margin-bottom: 8px; }
+        input, select { width: 100%; padding: 14px; border: 2px solid #f1f5f9; border-radius: 12px; font-weight: 600; outline: none; box-sizing: border-box; }
+        input:focus { border-color: var(--primary); }
+        .btn-save { width: 100%; background: var(--slate-900); color: white; padding: 18px; border: none; border-radius: 15px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="students.php" style="text-decoration:none; color:var(--primary); font-weight:800; font-size:12px;">← BACK TO LIST</a>
+        <h1 style="font-weight:900; letter-spacing:-1.5px; margin: 20px 0;">New Registration</h1>
+        
+        <div class="card">
+            <form action="save_student.php" method="POST">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" name="name" placeholder="Learner's Full Name" required>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Admission No</label>
+                        <input type="text" name="adm" placeholder="KPS/..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Grade</label>
+                        <select name="grade">
+                            <option>Grade 1</option><option>Grade 2</option><option>Grade 3</option>
+                            <option>Grade 4</option><option>Grade 5</option><option>Grade 6</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Parent/Guardian Name</label>
+                    <input type="text" name="parent" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <label>Contact Phone</label>
+                    <input type="tel" name="phone" placeholder="07..." required>
+                </div>
+                <button type="submit" class="btn-save">Register Learner</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
