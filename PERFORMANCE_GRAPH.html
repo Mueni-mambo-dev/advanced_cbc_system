@@ -1,49 +1,76 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<meta charset="UTF-8">
+<title>Student Performance Comparison</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #eef2f7;
+        padding: 40px;
+    }
+    h2 {
+        text-align: center;
+        color: #003366;
+        margin-bottom: 30px;
+    }
+    form {
+        max-width: 600px;
+        margin: 0 auto 40px auto;
+        background: #fff;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    label {
+        font-weight: bold;
+    }
+    select, input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin: 15px 0;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    input[type="submit"] {
+        background: #003366;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    input[type="submit"]:hover {
+        background: #001f4d;
+    }
+</style>
 </head>
-
 <body>
 
-Student ID
-<input id="student">
+<h2>Compare Student Performance</h2>
 
-<button onclick="load()">Show Graph</button>
+<form action="PERFORMANCE_GRAPH.php" method="POST">
+    <label>Select Students:</label>
+    <select name="student_ids[]" multiple required>
+        <option value="1">John Doe</option>
+        <option value="2">Jane Otieno</option>
+        <option value="3">Mary Wanjiku</option>
+    </select>
 
-<canvas id="chart"></canvas>
+    <label>Select Term:</label>
+    <select name="term" required>
+        <option value="Term 1">Term 1</option>
+        <option value="Term 2">Term 2</option>
+        <option value="Term 3">Term 3</option>
+    </select>
 
-<script>
+    <label>Select Year:</label>
+    <select name="year" required>
+        <option value="2025">2025</option>
+        <option value="2026">2026</option>
+    </select>
 
-function load(){
-
-fetch("performance.php?id="+student.value)
-
-.then(res=>res.json())
-.then(data=>{
-
-let subjects=[]
-let marks=[]
-
-data.forEach(r=>{
-subjects.push(r.subject)
-marks.push(r.marks)
-})
-
-new Chart(chart,{
-type:'bar',
-data:{
-labels:subjects,
-datasets:[{label:'Marks',data:marks}]
-}
-})
-
-})
-
-}
-
-</script>
+    <input type="submit" name="submit" value="Generate Chart">
+</form>
 
 </body>
 </html>
